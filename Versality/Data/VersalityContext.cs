@@ -18,5 +18,7 @@ namespace Versality.Data
         public DbSet<Versality.Models.ActiveMethods> ActiveMethods { get; set; }
 
         public DbSet<Versality.Models.ViewModels.TheProblem> TheProblem { get; set; }
+
+        public DbSet<Versality.Models.Knowledge> Knowledge { get; set; }
     }
 }

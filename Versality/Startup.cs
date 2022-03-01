@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Versality.Data;
+using Versality.Services;
 
 namespace Versality
 {
@@ -29,6 +30,8 @@ namespace Versality
 
             string mySqlConnectionStr = Configuration.GetConnectionString("VersalityContext");
             services.AddDbContextPool<VersalityContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+
+            services.AddScoped<TheProblemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

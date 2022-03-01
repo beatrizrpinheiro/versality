@@ -1,0 +1,35 @@
+﻿@model Versality.Models.ViewModels.KnowledgeFormViewModel
+
+@{
+    ViewData["Title"] = "Management Request";
+}
+
+<h1>Management Request</h1>
+
+<h4>Knowledge Management Application</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Knowledge.ActionLeader" class="control-label"></label>
+                <input asp-for="Knowledge.ActionLeader" class="form-control" />
+                <span asp-validation-for="Knowledge.ActionLeader" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Knowledge.TheProblemId" class="control-label"></label>
+                <select asp-for="Knowledge.TheProblemId" asp-items="@(new SelectList(Model.TheProblem,"Id", "Name"))" class="form-control"></select> 
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
