@@ -1,6 +1,6 @@
 using System;
 
-namespace Versality.Models
+namespace Versality.Models.ViewModels
 {
     public class ErrorViewModel
     {
