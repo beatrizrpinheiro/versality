@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Versality.Models;
+using Versality.Models.ViewModels;
 
 namespace Versality.Data
 {
@@ -15,5 +16,7 @@ namespace Versality.Data
         }
 
         public DbSet<Versality.Models.ActiveMethods> ActiveMethods { get; set; }
+
+        public DbSet<Versality.Models.ViewModels.TheProblem> TheProblem { get; set; }
     }
 }
