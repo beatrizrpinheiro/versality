@@ -16,11 +16,11 @@ namespace Versality.Models
        
         public Sector Sector { get; set; }
         public int SectorId { get; set; }
-       
 
 
     }
 }
+
 
      
 

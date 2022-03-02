@@ -18,6 +18,10 @@ namespace Versality.Controllers
         private readonly TheProblemService _theProblemService;
         private readonly SectorService _sectorService;
 
+        private TheProblem theProblem;
+        
+
+
         public KnowledgesController(VersalityContext context, TheProblemService theProblemService, SectorService sectorService)
         {
             _context = context;
@@ -25,11 +29,35 @@ namespace Versality.Controllers
             _sectorService = sectorService;
         }
 
-        // GET: Knowledges
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Result(int? id)
+        {
+            // RULE SOLUTION
+
+            if (id == 1)
+            {
+                return RedirectToAction("Report", "Jigsaws"); ;
+            }
+
+            if (id == 2)
+            {
+                return RedirectToAction("Report", "ProblemLearnings"); ;
+            }
+
+            if (id == 3)
+            {
+                return RedirectToAction("Report", "PeerInstructions"); ;
+            }
+
+            return View();
+
+        }
+
+            // GET: Knowledges
+            public async Task<IActionResult> Index()
         {
             return View(await _context.Knowledge.Include(x => x.Sector).Include(x => x.TheProblem).ToListAsync());
         }
+
 
         // GET: Knowledges/Details/5
         public async Task<IActionResult> Details(int? id)

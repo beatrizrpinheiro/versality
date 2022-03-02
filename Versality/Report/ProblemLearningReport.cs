@@ -73,14 +73,14 @@ namespace Versality.Report
             _pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             _pdfTable.AddCell(_pdfPCell);
 
-            _fontStyle = FontFactory.GetFont("Arial", 8f, 1);
+            _fontStyle = FontFactory.GetFont("Arial", 9f, 1);
             _pdfPCell = new PdfPCell(new Phrase("Method Name", _fontStyle));
             _pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
             _pdfPCell.VerticalAlignment = Element.ALIGN_MIDDLE;
             _pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             _pdfTable.AddCell(_pdfPCell);
 
-            _fontStyle = FontFactory.GetFont("Arial", 8f, 1);
+            _fontStyle = FontFactory.GetFont("Arial", 9f, 1);
             _pdfPCell = new PdfPCell(new Phrase("Solution Step by Step", _fontStyle));
             _pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
             _pdfPCell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -90,7 +90,7 @@ namespace Versality.Report
             #endregion
 
             #region Table Body
-            _fontStyle = FontFactory.GetFont("Arial", 8f, 0);
+            _fontStyle = FontFactory.GetFont("Arial", 10f, 0);
             int serialNumber = 1;
             foreach (ProblemLearning problemLearning in _problemLearnings)
             {
