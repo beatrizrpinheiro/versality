@@ -20,5 +20,9 @@ namespace Versality.Data
         public DbSet<Versality.Models.ViewModels.TheProblem> TheProblem { get; set; }
 
         public DbSet<Versality.Models.Knowledge> Knowledge { get; set; }
+
+        public DbSet<Versality.Models.Sector> Sector { get; set; }
+
+      
     }
 }

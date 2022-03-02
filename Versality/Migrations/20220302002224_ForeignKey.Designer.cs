@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Versality.Data;
 
 namespace Versality.Migrations
 {
     [DbContext(typeof(VersalityContext))]
-    partial class VersalityContextModelSnapshot : ModelSnapshot
+    [Migration("20220302002224_ForeignKey")]
+    partial class ForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,10 +45,10 @@ namespace Versality.Migrations
                     b.Property<string>("ActionLeader")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("SectorId")
+                    b.Property<int>("SectorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TheProblemId")
+                    b.Property<int>("TheProblemId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -99,11 +101,15 @@ namespace Versality.Migrations
                 {
                     b.HasOne("Versality.Models.Sector", "Sector")
                         .WithMany()
-                        .HasForeignKey("SectorId");
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Versality.Models.ViewModels.TheProblem", "TheProblem")
                         .WithMany()
-                        .HasForeignKey("TheProblemId");
+                        .HasForeignKey("TheProblemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Sector");
 

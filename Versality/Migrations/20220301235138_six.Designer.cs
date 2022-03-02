@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Versality.Data;
 
 namespace Versality.Migrations
 {
     [DbContext(typeof(VersalityContext))]
-    partial class VersalityContextModelSnapshot : ModelSnapshot
+    [Migration("20220301235138_six")]
+    partial class six
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,17 +45,13 @@ namespace Versality.Migrations
                     b.Property<string>("ActionLeader")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("SectorId")
+                    b.Property<int>("SectorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TheProblemId")
+                    b.Property<int>("TheProblemId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SectorId");
-
-                    b.HasIndex("TheProblemId");
 
                     b.ToTable("Knowledge");
                 });
@@ -93,21 +91,6 @@ namespace Versality.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TheProblem");
-                });
-
-            modelBuilder.Entity("Versality.Models.Knowledge", b =>
-                {
-                    b.HasOne("Versality.Models.Sector", "Sector")
-                        .WithMany()
-                        .HasForeignKey("SectorId");
-
-                    b.HasOne("Versality.Models.ViewModels.TheProblem", "TheProblem")
-                        .WithMany()
-                        .HasForeignKey("TheProblemId");
-
-                    b.Navigation("Sector");
-
-                    b.Navigation("TheProblem");
                 });
 #pragma warning restore 612, 618
         }

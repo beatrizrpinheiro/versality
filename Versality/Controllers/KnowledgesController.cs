@@ -16,17 +16,19 @@ namespace Versality.Controllers
     {
         private readonly VersalityContext _context;
         private readonly TheProblemService _theProblemService;
+        private readonly SectorService _sectorService;
 
-        public KnowledgesController(VersalityContext context, TheProblemService theProblemService)
+        public KnowledgesController(VersalityContext context, TheProblemService theProblemService, SectorService sectorService)
         {
             _context = context;
             _theProblemService = theProblemService;
+            _sectorService = sectorService;
         }
 
         // GET: Knowledges
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Knowledge.ToListAsync());
+            return View(await _context.Knowledge.Include(x => x.Sector).Include(x => x.TheProblem).ToListAsync());
         }
 
         // GET: Knowledges/Details/5
@@ -51,7 +53,10 @@ namespace Versality.Controllers
         public IActionResult Create()
         {
             var problems = _theProblemService.FindAll();
-            var viewModel = new KnowledgeFormViewModel { TheProblem = problems };
+            var sectors = _sectorService.FindAll();
+            var viewModel = new KnowledgeFormViewModel { TheProblem = problems, TheSectors = sectors };
+           
+ 
             return View(viewModel);
         }
 
@@ -60,7 +65,7 @@ namespace Versality.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ActionLeader")] Knowledge knowledge)
+        public async Task<IActionResult> Create([Bind("Id,ActionLeader,TheProblemId, SectorId")] Knowledge knowledge)
         {
             if (ModelState.IsValid)
             {

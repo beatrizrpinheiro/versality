@@ -12,5 +12,6 @@ namespace Versality.Models.ViewModels
         public string Description { get; set; }
         public string Sector { get; set; }
         public DateTime DateProblem { get; set; }
+
     }
 }

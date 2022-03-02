@@ -32,6 +32,8 @@ namespace Versality
             services.AddDbContextPool<VersalityContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddScoped<TheProblemService>();
+            services.AddScoped<SectorService>();
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +42,7 @@ namespace Versality
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
