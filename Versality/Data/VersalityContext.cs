@@ -23,6 +23,8 @@ namespace Versality.Data
 
         public DbSet<Versality.Models.Sector> Sector { get; set; }
 
+        public DbSet<Versality.Models.ViewModels.Forum> Forum { get; set; }
+
       
     }
 }
